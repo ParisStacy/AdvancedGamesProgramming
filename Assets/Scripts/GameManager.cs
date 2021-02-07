@@ -3,6 +3,9 @@
 public class GameManager : MonoBehaviour
 {
     public GameObject PlayerObject;
+    public GameObject BallObject;
+
+    public GameObject enemyPrefab;
 
     void Start()
     {
@@ -11,7 +14,7 @@ public class GameManager : MonoBehaviour
         Services.InputManager = new InputManager();
         Services.PlayerManager = new PlayerManager();
 
-        Services.InitializeServices(PlayerObject);
+        Services.InitializeServices(PlayerObject,BallObject);
     }
 
     void Update()
@@ -19,5 +22,10 @@ public class GameManager : MonoBehaviour
         Services.EnemyManager.Update();
         Services.InputManager.Update();
         Services.PlayerManager.Update();
+    }
+
+    public void SpawnEnemy(out GameObject enemy) {
+        GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(0,1,7), Quaternion.identity);
+        enemy = newEnemy;
     }
 }

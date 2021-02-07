@@ -3,8 +3,8 @@
 
 public static class Services {
 
-    public static void InitializeServices(GameObject player) {
-        EnemyManager.Initialize();
+    public static void InitializeServices(GameObject player, GameObject ball) {
+        EnemyManager.Initialize(ball);
         InputManager.Initialize();
         PlayerManager.Initialize(player);
     }
@@ -17,19 +17,39 @@ public static class Services {
 
 public class EnemyManager {
 
-    private Vector3 directionOfBall;
-
-    public void Initialize() {
-
+    private struct enemyStruct {
+        public GameObject enemyObject;
+        public Vector3 direction;
     }
+
+    private enemyStruct[] _enemies = new enemyStruct[TuningVariables.EnemyTuning.count];
+
+    private GameObject _ball;
+
+    public void Initialize(GameObject ball) {
+        _ball = ball;
+
+        foreach(enemyStruct n in _enemies) {
+            GameObject newEnemy;
+            Services.GameManager.SpawnEnemy(out newEnemy);
+            n.enemyObject = newEnemy;
+        }
+    }
+
     public void Update() {
-
+        Tracking();
+        foreach(enemyStruct n in _enemies) {
+            n.enemyObject.transform.position += n.direction * Time.deltaTime * TuningVariables.EnemyTuning.speed;
+        }
     }
+
     public void Destruction() {
 
     }
     public void Tracking() {
-
+        foreach(enemyStruct n in _enemies) {
+            n.direction = n.enemyObject.transform.position - _ball.transform.position;
+        }
     }
 }
 
