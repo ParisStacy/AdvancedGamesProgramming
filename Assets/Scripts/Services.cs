@@ -17,6 +17,8 @@ public static class Services {
 
 public class EnemyManager {
 
+    private Vector3 directionOfBall;
+
     public void Initialize() {
 
     }
