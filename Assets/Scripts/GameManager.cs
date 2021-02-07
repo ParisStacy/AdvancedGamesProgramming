@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour
         Services.PlayerManager.Update();
     }
 
-    public void SpawnEnemy(out GameObject enemy) {
+    public GameObject SpawnEnemy() {
         GameObject newEnemy = Instantiate(enemyPrefab, new Vector3(0,1,7), Quaternion.identity);
-        enemy = newEnemy;
+        return newEnemy;
     }
 }

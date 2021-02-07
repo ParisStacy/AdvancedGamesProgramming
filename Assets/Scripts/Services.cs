@@ -27,28 +27,32 @@ public class EnemyManager {
     private GameObject _ball;
 
     public void Initialize(GameObject ball) {
+        Debug.Log("Initializing Enemies...");
         _ball = ball;
 
-        foreach(enemyStruct n in _enemies) {
+        for(int i=0; i <= _enemies.Length; i++) {
             GameObject newEnemy;
-            Services.GameManager.SpawnEnemy(out newEnemy);
-            n.enemyObject = newEnemy;
+            newEnemy = Services.GameManager.SpawnEnemy();
+            _enemies[i].enemyObject = newEnemy;
         }
     }
 
     public void Update() {
+
         Tracking();
         foreach(enemyStruct n in _enemies) {
             n.enemyObject.transform.position += n.direction * Time.deltaTime * TuningVariables.EnemyTuning.speed;
         }
+
     }
 
     public void Destruction() {
 
     }
+
     public void Tracking() {
-        foreach(enemyStruct n in _enemies) {
-            n.direction = n.enemyObject.transform.position - _ball.transform.position;
+        for (int i = 0; i < _enemies.Length - 1; i++) {
+            _enemies[i].direction = _enemies[i].enemyObject.transform.position - _ball.transform.position;
         }
     }
 }
