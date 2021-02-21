@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 2.5
-  enemyNumber: 1
+  enemyNumber: 2
   enemySpeed: 5
 --- !u!1 &326975698
 GameObject:
