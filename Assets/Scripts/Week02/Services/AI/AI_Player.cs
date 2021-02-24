@@ -23,7 +23,8 @@ public class AI_Player : MonoBehaviour
         thisPlayer._speed = speed;
         thisPlayer._teamBlue = teamBlue;
         thisPlayer._active = true;
-        transform.position = new Vector3(2, 0, 0);
+        if (thisPlayer._playerControlled) transform.position = new Vector3(-2, 0, 0);
+        else transform.position = new Vector3(2, 0, 0);
     }
 
     void Awake()

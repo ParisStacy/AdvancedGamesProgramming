@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class AI_Goal : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public bool blueGoal;
+
+    private GameObject _ball;
+
+    void Start() {
+        _ball = ServicesLocator.GameManager.ball;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject == _ball)
+            ServicesLocator.EventManager.Fire(new GoalScored(blueGoal));
     }
 }

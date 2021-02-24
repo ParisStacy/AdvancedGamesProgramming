@@ -757,6 +757,8 @@ GameObject:
   m_Component:
   - component: {fileID: 416332300}
   - component: {fileID: 416332299}
+  - component: {fileID: 416332302}
+  - component: {fileID: 416332301}
   m_Layer: 0
   m_Name: Goal00
   m_TagString: Untagged
@@ -824,11 +826,50 @@ Transform:
   m_GameObject: {fileID: 416332298}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
   m_LocalPosition: {x: -9.719, y: 0.969, z: 0}
-  m_LocalScale: {x: 10.543011, y: 16.073479, z: 20.518635}
+  m_LocalScale: {x: 8.566196, y: 16.073479, z: 20.518635}
   m_Children: []
   m_Father: {fileID: 1581575887}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!61 &416332301
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416332298}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
+    newSize: {x: 0.36, y: 0.36}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48, y: 0.48}
+  m_EdgeRadius: 0
+--- !u!114 &416332302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 416332298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ee7bfe6cc9ed249b1aa4a9c0a475c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueGoal: 1
 --- !u!1 &420146397
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1541,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1160855131}
   - component: {fileID: 1160855130}
+  - component: {fileID: 1160855133}
+  - component: {fileID: 1160855132}
   m_Layer: 0
   m_Name: Goal01
   m_TagString: Untagged
@@ -1567,11 +1610,50 @@ Transform:
   m_GameObject: {fileID: 1160855129}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
   m_LocalPosition: {x: 9.531, y: 0.969, z: 0}
-  m_LocalScale: {x: 10.543011, y: 16.073479, z: 20.518635}
+  m_LocalScale: {x: 8.566196, y: 16.073479, z: 20.518635}
   m_Children: []
   m_Father: {fileID: 1581575887}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!61 &1160855132
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160855129}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.48, y: 0.48}
+    newSize: {x: 0.36, y: 0.36}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.48, y: 0.48}
+  m_EdgeRadius: 0
+--- !u!114 &1160855133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160855129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ee7bfe6cc9ed249b1aa4a9c0a475c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blueGoal: 0
 --- !u!1 &1373036772
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,7 +1769,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373036772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.05, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 3.372992, y: 3.372992, z: 3.372992}
   m_Children:
   - {fileID: 1541628297}
@@ -2812,7 +2894,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2118990073}
   m_LocalRotation: {x: -0, y: -0, z: 0.70710576, w: 0.70710784}
-  m_LocalPosition: {x: -0.03670025, y: 0.8885002, z: 0}
+  m_LocalPosition: {x: 0, y: 0.8885002, z: 0}
   m_LocalScale: {x: 27.746994, y: 0.5634117, z: 20.518635}
   m_Children: []
   m_Father: {fileID: 1581575887}

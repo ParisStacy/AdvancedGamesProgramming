@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
         ServicesLocator.GameManager = this;
         ServicesLocator.InitializeServices();
 
-
+        ServicesLocator.EventManager.Register<GoalScored>(onGoalScored);
 
 
     }
@@ -41,6 +41,17 @@ public class GameManager : MonoBehaviour
     void UpdateServices()
     {
         ServicesLocator.InputManager.Update();
+    }
+
+    public void onGoalScored(AGPEvent e) {
+        var goalScoreEvent = (GoalScored) e;
+
+        if (goalScoreEvent.blueTeamScored)
+            _blueScore++;
+        else
+            _redScore++;
+
+        ball.transform.position = Vector3.zero;
     }
 
 }
