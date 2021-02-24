@@ -7,8 +7,11 @@ public class GameManager : MonoBehaviour
 {
     [Header("Configuration")]
     public Text ScoreText;
+    public Text WinnerText;
     public GameObject ball;
     public AI_Player[] players;
+
+    public GameObject[] panels;
 
     [Header("Tuning: Player")]
     public float playerSpeed;
@@ -18,6 +21,8 @@ public class GameManager : MonoBehaviour
     private int _blueScore;
     private int _redScore;
 
+    public FiniteStateMachine<GameManager> _fsm;
+
     void Awake()
     {
         //Initialize Services
@@ -26,6 +31,8 @@ public class GameManager : MonoBehaviour
 
         ServicesLocator.EventManager.Register<GoalScored>(onGoalScored);
 
+        _fsm = new FiniteStateMachine<GameManager>(this);
+        _fsm.TransitionTo<GameStart>();
 
     }
 
@@ -52,6 +59,12 @@ public class GameManager : MonoBehaviour
             _redScore++;
 
         ball.transform.position = Vector3.zero;
+    }
+
+    public void onGameStart(AGPEvent e) {
+        ServicesLocator.AIManager.SpawnPlayers();
+        _blueScore = 0;
+        _redScore = 0;
     }
 
 }

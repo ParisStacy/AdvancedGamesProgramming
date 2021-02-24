@@ -9,13 +9,17 @@ public class AIManager
     public void Start()
     {
         _players = ServicesLocator.GameManager.players;
-
-        _players[0].Spawn(false, 2, false);
-        _players[1].Spawn(true, 3, false);
+        SpawnPlayers();
     }
 
     void Update()
     {
         
     }
+
+    public void SpawnPlayers() {
+        _players[0].Spawn(false, 1, false);
+        _players[1].Spawn(true, 2, true);
+    }
+
 }

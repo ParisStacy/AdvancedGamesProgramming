@@ -72,3 +72,12 @@ public class TimedOut : AGPEvent {
         this.blueScore = blueScore;
     }
 }
+
+public class TeamWon : AGPEvent {
+
+    public bool blueWon;
+
+    public TeamWon(bool _blueWon) {
+        this.blueWon = _blueWon;
+    }
+}
