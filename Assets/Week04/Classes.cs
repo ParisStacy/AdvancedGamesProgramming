@@ -1,9 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 public abstract class Piece {
     public abstract bool active { get; set; }
     public abstract bool white { get; set; }
 
-    public abstract Tile[] availableMoves { get; set; }
+    public abstract List<Move> AvailableMoves { get; set; }
 
     public abstract void checkMoves();
 
@@ -18,7 +18,9 @@ public class Tile {
 }
 
 public class Move {
-
+    public int startPosition;
+    public int endPosition;
+    public Piece piece;
 }
 
 
@@ -27,7 +29,7 @@ public class Rook : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
@@ -35,27 +37,60 @@ public class Rook : Piece {
 
     public override void checkMoves() {
 
-        CheckMovesData d;
-        d._i = 1;
-        d._break = false;
-        d._valid = false;
+        CheckMovesData CheckMovesData;
+        CheckMovesData.i = 1;
+        CheckMovesData._break = false;
+        CheckMovesData._valid = false;
+
+        int offset;
 
         //S
-        while(!d._break) {
+        offset = 8;
+        while(!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
 
-            if (Board.border.Contains(position + d._i * 8)) d._break = true;
-            if (Board.myBoard[position + d._i * 8].active == true) d._break = true;
-
-            d._valid = !(Board.myBoard[position + d._i * 8].white == white);
-
-            if (d._valid) {
-
-            }
-            
-            d._valid = false;
-            d._i++;
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
         }
+        //N
+        offset = -8;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
 
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+        //E
+        offset = 1;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+        //W
+        offset = -1;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+    }
+
+    public void AddMove(CheckMovesData checkMovesData, int offset) {
+        if (!checkMovesData._valid) return;
+
+        Move thisMove = new Move();
+        thisMove.startPosition = position;
+        thisMove.endPosition = position + checkMovesData.i * offset;
+        thisMove.piece = this;
+
+        AvailableMoves.Add(thisMove);
     }
 }
 
@@ -64,13 +99,67 @@ public class Bishop : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
     #endregion
     public override void checkMoves() {
 
+        CheckMovesData CheckMovesData;
+        CheckMovesData.i = 1;
+        CheckMovesData._break = false;
+        CheckMovesData._valid = false;
+
+        int offset;
+
+        //SE
+        offset = 9;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+        //NE
+        offset = -9;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+        //SW
+        offset = 7;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+        //NW
+        offset = -7;
+        while (!CheckMovesData._break) {
+            CheckMovesData = Board.CheckTile(CheckMovesData, offset, this);
+            AddMove(CheckMovesData, offset);
+
+            CheckMovesData._valid = false;
+            CheckMovesData.i++;
+        }
+    }
+
+    public void AddMove(CheckMovesData checkMovesData, int offset) {
+        if (!checkMovesData._valid) return;
+
+        Move thisMove = new Move();
+        thisMove.startPosition = position;
+        thisMove.endPosition = position + checkMovesData.i * offset;
+        thisMove.piece = this;
+
+        AvailableMoves.Add(thisMove);
     }
 }
 
@@ -79,7 +168,7 @@ public class Knight : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
@@ -94,7 +183,7 @@ public class Queen : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
@@ -109,7 +198,7 @@ public class King : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
@@ -124,7 +213,7 @@ public class Pawn : Piece {
     public override bool active { get; set; }
     public override bool white { get; set; }
 
-    public override Tile[] availableMoves { get; set; }
+    public override List<Move> AvailableMoves { get; set; }
 
     public override int position { get; set; }
     public override string type { get; set; }
@@ -134,9 +223,10 @@ public class Pawn : Piece {
     }
 }
 
-
 public struct CheckMovesData {
-    public int _i;
+    public int i;
     public bool _break;
     public bool _valid;
+
+
 }
