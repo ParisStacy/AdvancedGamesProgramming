@@ -13,6 +13,7 @@ public static class ServicesLocator
         //Run Startup
         InputManager.Start();
         AIManager.Start();
+        GameStateManager.Start();
     }
 
     public static GameManager GameManager;

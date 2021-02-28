@@ -21,8 +21,6 @@ public class GameManager : MonoBehaviour
     private int _blueScore;
     private int _redScore;
 
-    public FiniteStateMachine<GameManager> _fsm;
-
     void Awake()
     {
         //Initialize Services
@@ -30,9 +28,6 @@ public class GameManager : MonoBehaviour
         ServicesLocator.InitializeServices();
 
         ServicesLocator.EventManager.Register<GoalScored>(onGoalScored);
-
-        _fsm = new FiniteStateMachine<GameManager>(this);
-        _fsm.TransitionTo<GameStart>();
 
     }
 
@@ -48,6 +43,7 @@ public class GameManager : MonoBehaviour
     void UpdateServices()
     {
         ServicesLocator.InputManager.Update();
+        ServicesLocator.GameStateManager.Update();
     }
 
     public void onGoalScored(AGPEvent e) {
