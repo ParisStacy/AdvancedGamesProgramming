@@ -16,6 +16,7 @@ public static class Board {
 
     }
 
+    //Checks if a given position+offset is valid / should break the iteration
     public static CheckMovesData CheckTile(CheckMovesData d, int offset, Piece p) {
 
         if (Board.border.Contains(p.position + d.i * offset)) d._break = true;

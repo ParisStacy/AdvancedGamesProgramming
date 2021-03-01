@@ -23,7 +23,6 @@ public class Move {
     public Piece piece;
 }
 
-
 public class Rook : Piece {
     #region Variables
     public override bool active { get; set; }
