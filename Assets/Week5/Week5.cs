@@ -90,7 +90,6 @@ public class Week5 : MonoBehaviour
         _player.maxHealth = uint.Parse(elements[2]);
 
         //Stats
-
         int[] stats = new int[5];
         stats[0] = int.Parse(elements[3]);
         stats[1] = int.Parse(elements[4]);
@@ -121,8 +120,16 @@ public class Week5 : MonoBehaviour
      * JSON objects.
      */
 
+    public class UserScore {
+        public string user;
+        public int score;
+    }
+
     public int NumberAboveScore(TextAsset jsonFile, int score)
     {
+
+
+
         var toReturn = 0;
      
         return toReturn;
@@ -131,6 +138,10 @@ public class Week5 : MonoBehaviour
     public string GetHighScoreName(TextAsset jsonFile)
     {
         return "";
+    }
+
+    public class Root {
+        public List<UserScore> userScores;
     }
     
     // =========================== DON'T EDIT BELOW THIS LINE =========================== //
