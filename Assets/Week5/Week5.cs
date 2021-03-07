@@ -46,8 +46,69 @@ public class Week5 : MonoBehaviour
     {
         var toReturn = new List<Player>();
 
+        string[] lines = toParse.text.Split('\n');
+
+        for (int i=1; i < lines.Length; i++) {
+            toReturn.Add(CSVPlayerToPlayerClass(lines[i]));
+        }
+
         return toReturn;
     }
+
+    private Player CSVPlayerToPlayerClass(string line) {
+
+        Player _player = new Player();
+
+        string[] elements = line.Split(',');
+
+        //Name
+        _player.name = elements[0];
+
+        //Class
+        switch (elements[1]) {
+            case "Monk":
+                _player.classType = Player.Class.Monk;
+                break;
+            case "Wizard":
+                _player.classType = Player.Class.Wizard;
+                break;
+            case "Druid":
+                _player.classType = Player.Class.Druid;
+                break;
+            case "Thief":
+                _player.classType = Player.Class.Thief;
+                break;
+            case "Sorcerer":
+                _player.classType = Player.Class.Sorcerer;
+                break;
+            case "0":
+                _player.classType = Player.Class.Undefined;
+                break;
+        }
+
+        //Health
+        _player.maxHealth = uint.Parse(elements[2]);
+
+        //Stats
+
+        int[] stats = new int[5];
+        stats[0] = int.Parse(elements[3]);
+        stats[1] = int.Parse(elements[4]);
+        stats[2] = int.Parse(elements[5]);
+        stats[3] = int.Parse(elements[6]);
+        stats[4] = int.Parse(elements[7]);
+        _player.stats = stats;
+
+        //Alive
+        _player.alive = bool.Parse(elements[8]);
+
+        //Location
+        _player.location.x = float.Parse(elements[9]);
+        _player.location.y = float.Parse(elements[10]);
+
+        return _player;
+    }
+
 
     /*
      * Provided is a high score list as a JSON file.  Create the functions that will find the highest scoring name, and
